@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please ask</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="the_answer" class="their_answer">
+
+        </div>
+        <form id="question_form" class="full_form" action="" autocomplete="off" onsubmit="return false;" method="POST">
+            <input type="reset" id="reset" value="">
+            <input type="text" id="plea" class="plea" name="plea" placeholder="Please make the plea">
+            <input type="text" id="question" class="question" name="question" placeholder="Please make the question">
+
+            <button type="submit" id="ask">Ask</button>
+        </form>
+
+        <span id="refreshBtn"></span>
+    </div>
+
+    <video autoplay muted loop class="video">
+        <source src="video1.mp4" type="video/mp4">
+    </video>
+    <audio autoplay loop id="music">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

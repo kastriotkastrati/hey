@@ -29,7 +29,7 @@ body {
 input {
     background: none;
     border: none;
-    border-bottom: 2px solid lightskyblue;
+    border-bottom: 2px solid #222;
     color: #aaa;
     font-size: 2rem;
     outline: none;
@@ -46,14 +46,14 @@ input:focus {
     border:none;
     height: 1rem;
     width: 1rem;
-    background-color: lightskyblue;
+    background-color: #222;
     top: -2rem;
     right: -2rem;
     padding: 0;
 }
 
 .their_answer {
-    color: #fff;
+    color: #bbb;
     font-size: 3rem;
     max-width: 60vw;
     margin-bottom: 6rem;
@@ -94,6 +94,6 @@ input:focus {
     left: 2rem;
     height: 1rem;
     width: 1rem;
-    background-color: lightskyblue;
+    background-color: #222;
     z-index: 100;
 }

@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
 
         true_text.length > 0 ? (typewriter.typeString(true_text).start()) : (typewriter.typeString(whoareyou[0]).start());
-        the_reset.click();
     }
 
 

@@ -5,6 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let last_letter = '';
     let fake_text = '';
     let base_plea = '';
+
+    const faker = {
+        y_mode: false,
+        base_plea: '',
+        true_text: '',
+        fake_text: '',
+        last_letter: ''
+    }
+
+
+
+
     let q_form = document.getElementById('question_form');
     let plea = document.getElementById('plea');
     let the_answer = document.getElementById('the_answer');
@@ -27,60 +39,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let submitEvent = (event) => {
         event.preventDefault();
+        if (faker.true_text.length === 0) return;
+        if (faker.fake_text.length < 3) {
+            typewriter.typeString(whoareyou[0]).start();
+            return;
+        }
 
-        true_text.length > 0 ? (typewriter.typeString(true_text).start()) : (typewriter.typeString(whoareyou[0]).start());
+        typewriter.typeString(true_text).start()
     }
 
 
-    q_form.addEventListener('submit', submitEvent)
+    q_form.addEventListener('submit', submitEvent);
 
     plea.addEventListener('input', (event) => {
         if (event.data == '.') {
-            y_mode = !y_mode;
-            fake_text = '';
-            base_plea = plea.value.substring(0, plea.value.length - 1);
+            faker.y_mode = !faker.y_mode;
+            faker.fake_text = '';
+            faker.base_plea = plea.value.substring(0, plea.value.length - 1);
         }
 
-        if (y_mode) {
-            last_letter = plea_text[plea.value.length - 1];
-            fake_text += last_letter;
-            plea.value = base_plea + fake_text;
+        if (faker.y_mode) {
+            faker.last_letter = plea_text[plea.value.length - 1];
+            faker.fake_text += faker.last_letter;
+            plea.value = base_plea + faker.fake_text;
 
             event.data !== '.' && (true_text += event.data);
-            console.log(true_text);
         }
-        if (!y_mode) {
+        if (!faker.y_mode) {
             if (event.data == '.') {
                 plea.value = plea.value.substring(0, plea.value.length - 1);
             }
         }
 
         if (true_text.substring(true_text.length - 3) == '---' || plea.value.substring(plea.value.length - 3) == '---' || ask.value.substring(plea.value.length - 3) == '---') {
-            console.log('yeah');
             the_reset.click();
-            fake_text = '';
-            true_text = '';
+            faker.fake_text = '';
+            faker.true_text = '';
             plea.value = '';
             the_reset.click();
         }
+
+        console.log('y_mode: ', faker.y_mode);
+        console.log('true_text: ', faker.true_text);
+        console.log('last_letter: ', faker.last_letter);
+        console.log('fake_text: ', faker.fake_text);
+        console.log('base_plea: ', faker.base_plea);
 
     });
 
 
     refreshBtn.addEventListener('click', () => {
-        console.log('yeah');
-        y_mode = false;
-        true_text = '';
-        last_er = '';
-        fake_text = '';
-        base_plea = '';
+        faker.y_mode = false;
+        faker.true_text = '';
+        faker.last_letter = '';
+        faker.fake_text = '';
+        faker.base_plea = '';
         plea.value = '';
         typewriter.deleteAll().start();
         the_reset.click();
     });
 
-    question.addEventListener('input', (e)=> {
-        if(e.data == '?'){
+    question.addEventListener('input', (e) => {
+        if (e.data == '?') {
             ask.click();
         }
     });
@@ -101,8 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //macro 
 
-    document.addEventListener('keydown', (e)=>{
-        if(e.shiftKey && e.key == 'Z'){
+    document.addEventListener('keydown', (e) => {
+        if (e.shiftKey && e.key == 'Z') {
             e.preventDefault();
             refreshBtn.click();
         }
